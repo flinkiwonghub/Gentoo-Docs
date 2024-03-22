@@ -1,0 +1,2 @@
+# Gentoo-Docs
+Configurations
