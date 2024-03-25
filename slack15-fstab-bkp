@@ -1,0 +1,36 @@
+# /etc/fstab: static file system information.
+#
+# See the manpage fstab(5) for more information.
+#
+# NOTE: The root filesystem should have a pass number of either 0 or 1.
+#       All other filesystems should have a pass number of 0 or greater than 1.
+#
+# NOTE: Even though we list ext4 as the type here, it will work with ext2/ext3
+#       filesystems.  This just tells the kernel to use the ext4 driver.
+#
+# NOTE: You can use full paths to devices like /dev/sda3, but it is often
+#       more reliable to use filesystem labels or UUIDs. See your filesystem
+#       documentation for details on setting a label. To obtain the UUID, use
+#       the blkid(8) command.
+
+# <fs>							<mountpoint>	<type>		<opts>					<dump> <pass>
+#LABEL=boot						/boot		ext4		defaults				1   2
+#UUID=58e72203-57d1-4497-81ad-97655bd56494		/		xfs		defaults				0   1
+#LABEL=swap						none		swap		sw					0   0
+#/dev/cdrom      					/mnt/cdrom      auto        	noauto,owner,ro,comment=x-gvfs-show 	0   0
+
+# /dev/sda1
+UUID=F493-93A4						/boot/efi	vfat		noauto,defaults,noatime,umask=0077	0   2
+# /dev/sda2
+UUID=a3b9997a-de34-4a60-b900-a67e3ec6141a        	/boot           ext4        	defaults,noatime		        0   2
+# /dev/sda3
+UUID=1586e27a-81c7-4ed6-823e-cdb2fbf87639        	/               btrfs       	defaults,noatime,discard	        0   1
+# /dev/sda4
+UUID=4742cde7-9c08-411d-8ac7-1166112a403c		/home		xfs		defaults,noatime,discard		0   2
+# /dev/sda5
+UUID=0faf35ff-6a25-4c86-95c8-2609ce9f26d3        	swap            swap        	defaults,discard       			0   0
+
+#/dev/cdrom						/mnt/cdrom	auto		noauto,ower,ro,comment=x-gvfs-show	0   0
+devpts           					/dev/pts        devpts      	gid=5,mode=620   			0   0
+proc             					/proc           proc        	defaults         			0   0
+tmpfs            					/dev/shm       	tmpfs       	defaults         			0   0
